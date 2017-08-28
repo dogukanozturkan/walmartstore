@@ -4,7 +4,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/plain">
 <title>Book Store</title>
+   <style>
+table {border-collapse:collapse; table-layout:fixed; width:310px;}
+       table td {border:solid 1px #fab; width:100px; word-wrap:break-word;  white-space: normal!important;
+       overflow: hidden;
+max-width: 400px;
+word-wrap: break-word;}
+   </style>
 </head>
+
 <body>
 
 	<c:set var="letters" scope="session" value="${book}" />
@@ -25,17 +33,18 @@
 
 	<table>
 		<tr>
-			<td><c:forEach var="letter" items="${book}"
+			<c:forEach var="letter" items="${book}"
 					varStatus="letterCounter" begin="${pageStart}"
 					end="${pageStart + perPage - 1}">
 
 					<c:if
-						test="${not letterCounter.first and letterCounter.index % 4 == 0}"></td>
+						test="${not letterCounter.first and letterCounter.index % 4 == 0}">
 		</tr>
 		<tr>
-			<td></c:if> <a href="<c:url value='/book/${letterCounter.index}' />"><img
-					border="1" src="${letter.mediumImage}" width="150" height="150"></a>
-				</c:forEach></td>
+			</c:if> <td><a href="<c:url value='/book/${letterCounter.index}' />"><img
+					 src="${letter.mediumImage}" width="75" height="50"></a></br>${letter.name}</br>Price: ${letter.salePrice} $
+				</td></c:forEach>
+				
 		</tr>
 
 	</table>
